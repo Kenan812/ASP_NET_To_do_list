@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "To Do List";
+}
+
+@model ToDoListViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="text-center">
+
+                <form asp-action="AddTask" class="d-flex">
+                        <input style="width:400px;" class="form-control" id="Task" asp-for="Task">
+                        <button style="margin-left:20px; width:130px;" type="submit" class="btn btn-success btn-lg">Add task</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+                @for (int i = 0; i < Model.ToDoList.Count; i++)
+                {
+                    <div class="row d-flex">
+                        
+                        <div class="col-sm-7 text-start">
+                            <p>@Model.ToDoList[i].Task</p>
+                        </div>
+
+                            <div >
+                                @Html.ActionLink("X", "RemoveTask", "Home", @Model.ToDoList[i], new { @class = "btn btn-info" })
+                            </div>
+                    </div>
+                }
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+</div>
+
